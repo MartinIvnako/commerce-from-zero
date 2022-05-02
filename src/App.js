@@ -1,5 +1,5 @@
-import ListOfCards from "./components/listOfCards";
+import CategoryList from "./components/category/category-list";
 
 export default function App() {
-    return <ListOfCards />;
+    return <CategoryList />;
 }
