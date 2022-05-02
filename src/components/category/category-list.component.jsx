@@ -1,4 +1,4 @@
-import CategoryItem from "./category-item";
+import CategoryItem from "./category-item.component";
 
 export default function CategoryList() {
     const categories = [
