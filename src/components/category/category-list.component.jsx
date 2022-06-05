@@ -4,29 +4,34 @@ export default function CategoryList() {
     const categories = [
         {
             id: 1,
-            title: "Hats",
+            title: "ULTRASOFT TRIČKO IRON AESTHETICS, VOJENSKÁ ZELENÁ",
+            imgSrc: "https://ironaesthetics.cz/150-home_default/ultrasoft-tricko-iron-aesthetics-vojenska-zelena.jpg",
         },
         {
             id: 2,
-            title: "Jacket",
+            title: "ULTRASOFT TRIČKO IRON AESTHETICS, ČERNÝ MASKÁČ",
+            imgSrc: "https://ironaesthetics.cz/156-home_default/ultrasoft-tricko-iron-aesthetics-cierny-maskac.jpg",
         },
         {
             id: 3,
-            title: "Sneakers",
+            title: "PÁNSKÉ FITNESS TRIČKO IRON AESTHETICS FORCE, BLACK&GOLD",
+            imgSrc: "https://ironaesthetics.cz/185-home_default/fitness-tricko-iron-aesthetics-blackgold.jpg",
         },
         {
             id: 4,
-            title: "Womens",
+            title: "PÁNSKÉ FITNESS TRIČKO IRON AESTHETICS BOXED, BORDOVÉ",
+            imgSrc: "https://ironaesthetics.cz/4855-large_default/panske-fitness-tricko-iron-aesthetics-boxed-bordove.jpg",
         },
         {
-            id: 5,
-            title: "Mens",
+            id: 4,
+            title: "ULTRASOFT TRIČKO IRON AESTHETICS SKULL, VOJENSKÁ ZELENÁ",
+            imgSrc: "https://ironaesthetics.cz/256-large_default/ultrasoft-tricko-iron-aesthetics-skull-vojenska-zelena.jpg",
         },
     ];
     return (
-        <section className="bg-white dark:bg-gray-900">
-            <div className="container  mx-auto px-2">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <section class="bg-coolGray-50 py-4">
+            <div class="container px-4 mx-auto">
+                <div class="flex flex-wrap -m-3">
                     {categories.map((category) => (
                         <CategoryItem category={category} key={category.id} />
                     ))}
