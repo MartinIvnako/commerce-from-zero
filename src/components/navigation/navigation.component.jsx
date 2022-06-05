@@ -1,5 +1,4 @@
 import { Outlet, Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/banana-logo.svg";
 
 export default function Navigation() {
     const navigationLinks = [
@@ -52,13 +51,13 @@ export default function Navigation() {
                             <div className="flex items-center justify-end">
                                 <Link
                                     className="inline-block px-4 py-2 mr-2 font-medium leading-5 bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
-                                    to="/"
+                                    to="/sign-in"
                                 >
                                     Log In
                                 </Link>
                                 <Link
                                     className="inline-block px-4 py-2 text-sm font-medium leading-5 bg-green-500 rounded-md text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    to="/"
+                                    to="/sign-up"
                                 >
                                     Sign Up
                                 </Link>
@@ -95,7 +94,7 @@ export default function Navigation() {
                                 <Link className="inline-block" to="/">
                                     <img
                                         className="h-8"
-                                        src="flex-ui-assets/logos/flex-ui-green-light.svg"
+                                        src="https://shuffle.dev/flex-ui-assets/logos/flex-ui-green-light.svg"
                                         alt=""
                                     />
                                 </Link>
@@ -115,7 +114,7 @@ export default function Navigation() {
                                     <div className="w-full mb-2">
                                         <Link
                                             className="inline-block w-full px-4 py-2 text-sm font-medium leading-5 text-center bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
-                                            to="/"
+                                            to="/sign-in"
                                         >
                                             Log In
                                         </Link>
@@ -123,7 +122,7 @@ export default function Navigation() {
                                     <div className="w-full">
                                         <Link
                                             className="inline-block w-full px-4 py-2 text-sm font-medium leading-5 text-center text-white bg-green-500 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                            to="/"
+                                            to="/sign-up"
                                         >
                                             Sign Up
                                         </Link>
