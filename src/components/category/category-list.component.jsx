@@ -23,15 +23,15 @@ export default function CategoryList() {
             imgSrc: "https://ironaesthetics.cz/4855-large_default/panske-fitness-tricko-iron-aesthetics-boxed-bordove.jpg",
         },
         {
-            id: 4,
+            id: 5,
             title: "ULTRASOFT TRIČKO IRON AESTHETICS SKULL, VOJENSKÁ ZELENÁ",
             imgSrc: "https://ironaesthetics.cz/256-large_default/ultrasoft-tricko-iron-aesthetics-skull-vojenska-zelena.jpg",
         },
     ];
     return (
-        <section class="bg-coolGray-50 py-4">
-            <div class="container px-4 mx-auto">
-                <div class="flex flex-wrap -m-3">
+        <section className="py-4 bg-coolGray-50">
+            <div className="container px-4 mx-auto">
+                <div className="flex flex-wrap -m-3">
                     {categories.map((category) => (
                         <CategoryItem category={category} key={category.id} />
                     ))}

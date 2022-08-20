@@ -24,7 +24,7 @@ export default function SignIn() {
                         <div className="mb-6">
                             <label
                                 className="block mb-2 text-coolGray-800 font-medium"
-                                for=""
+                                htmlFor=""
                             >
                                 Name*
                             </label>
@@ -37,7 +37,7 @@ export default function SignIn() {
                         <div className="mb-6">
                             <label
                                 className="block mb-2 text-coolGray-800 font-medium"
-                                for=""
+                                htmlFor=""
                             >
                                 Email*
                             </label>
@@ -50,7 +50,7 @@ export default function SignIn() {
                         <div className="mb-4">
                             <label
                                 className="block mb-2 text-coolGray-800 font-medium"
-                                for=""
+                                htmlFor=""
                             >
                                 Password*
                             </label>

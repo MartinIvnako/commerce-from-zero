@@ -36,7 +36,7 @@ export default function Navigation() {
                         <div className="hidden xl:block xl:w-1/3">
                             <ul className="flex justify-center">
                                 {navigationLinks.map((navLink) => (
-                                    <li className="mr-12" id={navLink.id}>
+                                    <li className="mr-12" key={navLink.id}>
                                         <Link
                                             className="font-medium text-coolGray-500 hover:text-coolGray-900"
                                             to={navLink.link}
@@ -100,7 +100,7 @@ export default function Navigation() {
                                 </Link>
                                 <ul className="py-6">
                                     {navigationLinks.map((navLink) => (
-                                        <li className="mr-12" id={navLink.id}>
+                                        <li className="mr-12" key={navLink.id}>
                                             <Link
                                                 className="font-medium text-coolGray-500 hover:text-coolGray-900"
                                                 to={navLink.link}
