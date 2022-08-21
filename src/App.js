@@ -9,8 +9,8 @@ export default function App() {
         <Routes>
             <Route path="/" element={<Navigation />}>
                 <Route index element={<Home />} />
-                <Route path="sign-in" element={<SignUp />} />
-                <Route path="sign-up" element={<SignIn />} />
+                <Route path="sign-in" element={<SignIn />} />
+                <Route path="sign-up" element={<SignUp />} />
             </Route>
         </Routes>
     );

@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
+import {
+    signInWithGooglePopup,
+    createUserDocumentFromAuth,
+} from "../utils/firebase/firebase.utils";
 
 export default function SignIn() {
+    const logGoogleUser = async () => {
+        const { user } = await signInWithGooglePopup();
+        const userDocRef = await createUserDocumentFromAuth(user);
+    };
     return (
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-24 bg-white md:py-32">
             <div className="container px-4 mx-auto">
                 <div className="max-w-sm mx-auto">
                     <div className="mb-6 text-center">
@@ -13,49 +21,36 @@ export default function SignIn() {
                                 alt=""
                             />
                         </Link>
-                        <h3 className="mb-4 text-2xl md:text-3xl font-bold">
-                            Join our community
+                        <h3 className="mb-4 text-2xl font-bold md:text-3xl">
+                            Sign in to your account
                         </h3>
-                        <p className="text-lg text-coolGray-500 font-medium">
-                            Start your journey with our product
+                        <p className="text-lg font-medium text-coolGray-500">
+                            Start your demo version
                         </p>
                     </div>
                     <form action="">
                         <div className="mb-6">
                             <label
-                                className="block mb-2 text-coolGray-800 font-medium"
+                                className="block mb-2 font-medium text-coolGray-800"
                                 htmlFor=""
                             >
-                                Name*
+                                Email
                             </label>
                             <input
-                                className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                type="name"
-                                placeholder="Patryk"
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <label
-                                className="block mb-2 text-coolGray-800 font-medium"
-                                htmlFor=""
-                            >
-                                Email*
-                            </label>
-                            <input
-                                className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                type="name"
+                                className="block w-full p-3 leading-5 border rounded-lg shadow-md appearance-none text-coolGray-900 border-coolGray-200 placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                type="email"
                                 placeholder="dev@shuffle.dev"
                             />
                         </div>
                         <div className="mb-4">
                             <label
-                                className="block mb-2 text-coolGray-800 font-medium"
+                                className="block mb-2 font-medium text-coolGray-800"
                                 htmlFor=""
                             >
-                                Password*
+                                Password
                             </label>
                             <input
-                                className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                className="block w-full p-3 leading-5 border rounded-lg shadow-md appearance-none text-coolGray-900 border-coolGray-200 placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                 type="password"
                                 placeholder="************"
                             />
@@ -64,20 +59,20 @@ export default function SignIn() {
                             <div className="w-full md:w-1/2">
                                 <label className="relative inline-flex items-center">
                                     <input
-                                        className="form-checkbox appearance-none"
+                                        className="appearance-none form-checkbox"
                                         type="checkbox"
                                     />
                                     <img
-                                        className="absolute top-1/2 transform -translate-y-1/2 left-0"
+                                        className="absolute left-0 transform -translate-y-1/2 top-1/2"
                                         src="https://shuffle.dev/flex-ui-assets/elements/sign-up/checkbox-icon.svg"
                                         alt=""
                                     />
-                                    <span className="ml-7 text-xs text-coolGray-800 font-medium">
+                                    <span className="text-xs font-medium ml-7 text-coolGray-800">
                                         Remember me
                                     </span>
                                 </label>
                             </div>
-                            <div className="w-full md:w-auto mt-1">
+                            <div className="w-full mt-1 md:w-auto">
                                 <Link
                                     className="inline-block text-xs font-medium text-green-500 hover:text-green-600"
                                     to="/"
@@ -86,32 +81,22 @@ export default function SignIn() {
                                 </Link>
                             </div>
                         </div>
-                        <Link
-                            className="inline-block py-3 px-7 mb-4 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
-                            to="/"
+                        <button
+                            className="inline-block w-full py-3 mb-6 text-base font-medium leading-6 text-center bg-green-500 rounded-md shadow-sm px-7 text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                            onClick={logGoogleUser}
+                            type="button"
                         >
-                            Sign Up
-                        </Link>
-                        <Link
-                            className="inline-flex items-center justify-center py-3 px-7 mb-6 w-full text-base text-coolGray-500 font-medium text-center leading-6 bg-white border border-coolGray-100 hover:border-coolGray-200 rounded-md shadow-sm"
-                            to="/"
-                        >
-                            <img
-                                className="mr-2"
-                                src="https://shuffle.dev/flex-ui-assets/elements/sign-up/google-icon-sign-up.svg"
-                                alt=""
-                            />
-                            <span>Sign in with Google</span>
-                        </Link>
+                            Sign In
+                        </button>
                         <p className="text-center">
                             <span className="text-xs font-medium">
-                                Already have an account?
+                                Don’t have an account?
                             </span>
                             <Link
                                 className="inline-block text-xs font-medium text-green-500 hover:text-green-600 hover:underline"
                                 to="/"
                             >
-                                Sign In
+                                Sign up
                             </Link>
                         </p>
                     </form>
