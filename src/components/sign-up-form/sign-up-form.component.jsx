@@ -5,6 +5,7 @@ import {
     createUserDocumentFromAuth,
     signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
+import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
 const defaultFormFields = {
@@ -141,24 +142,17 @@ export default function SignUpForm() {
                         </Link>
                     </div>
                 </div>
-                <button
-                    className="inline-block w-full py-3 mb-4 text-base font-medium leading-6 text-center bg-green-500 rounded-md shadow-sm px-7 text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                    type="submit"
-                >
+
+                <Button buttonType="primary" type="submit">
                     Sign Up
-                </button>
-                <button
-                    className="inline-flex items-center justify-center w-full py-3 mb-6 text-base font-medium leading-6 text-center bg-white border rounded-md shadow-sm px-7 text-coolGray-500 border-coolGray-100 hover:border-coolGray-200"
+                </Button>
+                <Button
+                    buttonType="google"
                     type="button"
                     onClick={logGoogleUser}
                 >
-                    <img
-                        className="mr-2"
-                        src="https://shuffle.dev/flex-ui-assets/elements/sign-up/google-icon-sign-up.svg"
-                        alt=""
-                    />
                     <span>Sign in with Google</span>
-                </button>
+                </Button>
                 <p className="text-center">
                     <span className="text-xs font-medium">
                         Already have an account?
@@ -167,7 +161,7 @@ export default function SignUpForm() {
                         className="inline-block text-xs font-medium text-green-500 hover:text-green-600 hover:underline"
                         to="/"
                     >
-                        Sign In
+                        &nbsp; Sign In
                     </Link>
                 </p>
             </form>
