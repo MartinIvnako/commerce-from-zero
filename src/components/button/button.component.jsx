@@ -1,13 +1,3 @@
-/* 
-
-default
-
-invert
-
-google signIn
-
-*/
-
 const BUTTON_TYPE_CLASSES = {
     google: "inline-flex items-center justify-center w-full py-3 mb-6 text-base font-medium leading-6 text-center bg-white border rounded-md shadow-sm px-7 text-coolGray-500 border-coolGray-100 hover:border-coolGray-200",
     primary:

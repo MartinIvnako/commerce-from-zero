@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    createAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth,
     signInAuthWithEmailAndPassword,
     signInWithGooglePopup,
@@ -31,13 +30,19 @@ export default function SignInForm() {
         event.preventDefault();
 
         try {
-            const response = await signInAuthWithEmailAndPassword(
-                email,
-                password
-            );
+            await signInAuthWithEmailAndPassword(email, password);
             resetFormFields();
         } catch (error) {
-            console.log("", error);
+            switch (error.code) {
+                case "auth/wrong-password":
+                    alert("Incorrect password for email.");
+                    break;
+                case "auth/user-not-found":
+                    alert("No user associated with this email.");
+                    break;
+                default:
+                    console.log("", error);
+            }
         }
     };
 
