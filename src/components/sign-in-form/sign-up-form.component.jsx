@@ -3,25 +3,24 @@ import { Link } from "react-router-dom";
 import {
     createAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth,
+    signInAuthWithEmailAndPassword,
     signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
 const defaultFormFields = {
-    displayName: "",
     email: "",
     password: "",
-    confirmPassword: "",
 };
 
-export default function SignUpForm() {
+export default function SignInForm() {
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const { displayName, email, password, confirmPassword } = formFields;
+    const { email, password } = formFields;
 
-    const logGoogleUser = async () => {
+    const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
+        await createUserDocumentFromAuth(user);
     };
 
     const resetFormFields = () => {
@@ -31,22 +30,14 @@ export default function SignUpForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (password !== confirmPassword) {
-            alert("password do not match");
-            return;
-        }
         try {
-            const { user } = await createAuthUserWithEmailAndPassword(
+            const response = await signInAuthWithEmailAndPassword(
                 email,
                 password
             );
-            await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
         } catch (error) {
-            if (error.code === "auth/email-already-in-use") {
-                alert("Cannot create user, email already in use");
-            }
-            console.log("user creation encountered an error", error);
+            console.log("", error);
         }
     };
 
@@ -65,24 +56,13 @@ export default function SignUpForm() {
                     />
                 </Link>
                 <h3 className="mb-4 text-2xl font-bold md:text-3xl">
-                    Join our community
+                    Sign in to your account
                 </h3>
                 <p className="text-lg font-medium text-coolGray-500">
-                    Start your journey with our product
+                    Start your demo version
                 </p>
             </div>
             <form onSubmit={handleSubmit} action="">
-                <div className="mb-6">
-                    <FormInput
-                        label="Name*"
-                        type="text"
-                        placeholder="Patryk"
-                        required
-                        onChange={handleChange}
-                        value={displayName}
-                        name="displayName"
-                    />
-                </div>
                 <div className="mb-6">
                     <FormInput
                         label="Email*"
@@ -105,17 +85,7 @@ export default function SignUpForm() {
                         name="password"
                     />
                 </div>
-                <div className="mb-4">
-                    <FormInput
-                        label="Confirm password*"
-                        type="password"
-                        placeholder="************"
-                        required
-                        onChange={handleChange}
-                        value={confirmPassword}
-                        name="confirmPassword"
-                    />
-                </div>
+
                 <div className="flex flex-wrap items-center justify-between mb-6">
                     <div className="w-full md:w-1/2">
                         <label className="relative inline-flex items-center">
@@ -144,24 +114,24 @@ export default function SignUpForm() {
                 </div>
 
                 <Button buttonType="primary" type="submit">
-                    Sign Up
+                    Sign In
                 </Button>
                 <Button
                     buttonType="google"
                     type="button"
-                    onClick={logGoogleUser}
+                    onClick={signInWithGoogle}
                 >
                     <span>Sign in with Google</span>
                 </Button>
                 <p className="text-center">
                     <span className="text-xs font-medium">
-                        Already have an account?
+                        Don’t have an account?
                     </span>
                     <Link
                         className="inline-block text-xs font-medium text-green-500 hover:text-green-600 hover:underline"
-                        to="/sign-in"
+                        to="/sign-up"
                     >
-                        &nbsp; Sign In
+                        &nbsp; Sign up
                     </Link>
                 </p>
             </form>
