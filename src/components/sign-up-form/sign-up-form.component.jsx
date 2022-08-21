@@ -1,13 +1,57 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+    createAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth,
     signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
+import FormInput from "../form-input/form-input.component";
+
+const defaultFormFields = {
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+};
 
 export default function SignUpForm() {
+    const [formFields, setFormFields] = useState(defaultFormFields);
+    const { displayName, email, password, confirmPassword } = formFields;
+
     const logGoogleUser = async () => {
         const { user } = await signInWithGooglePopup();
         const userDocRef = await createUserDocumentFromAuth(user);
+    };
+
+    const resetFormFields = () => {
+        setFormFields(defaultFormFields);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (password !== confirmPassword) {
+            alert("password do not match");
+            return;
+        }
+        try {
+            const { user } = await createAuthUserWithEmailAndPassword(
+                email,
+                password
+            );
+            await createUserDocumentFromAuth(user, { displayName });
+            resetFormFields();
+        } catch (error) {
+            if (error.code === "auth/email-already-in-use") {
+                alert("Cannot create user, email already in use");
+            }
+            console.log("user creation encountered an error", error);
+        }
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormFields({ ...formFields, [name]: value });
     };
     return (
         <>
@@ -26,61 +70,49 @@ export default function SignUpForm() {
                     Start your journey with our product
                 </p>
             </div>
-            <form action="">
+            <form onSubmit={handleSubmit} action="">
                 <div className="mb-6">
-                    <label
-                        className="block mb-2 font-medium text-coolGray-800"
-                        htmlFor=""
-                    >
-                        Name*
-                    </label>
-                    <input
-                        className="form__input"
+                    <FormInput
+                        label="Name*"
                         type="text"
                         placeholder="Patryk"
                         required
+                        onChange={handleChange}
+                        value={displayName}
+                        name="displayName"
                     />
                 </div>
                 <div className="mb-6">
-                    <label
-                        className="block mb-2 font-medium text-coolGray-800"
-                        htmlFor=""
-                    >
-                        Email*
-                    </label>
-                    <input
-                        className="form__input"
+                    <FormInput
+                        label="Email*"
                         type="email"
                         placeholder="dev@shuffle.dev"
                         required
+                        onChange={handleChange}
+                        value={email}
+                        name="email"
                     />
                 </div>
                 <div className="mb-4">
-                    <label
-                        className="block mb-2 font-medium text-coolGray-800"
-                        htmlFor=""
-                    >
-                        Password*
-                    </label>
-                    <input
-                        className="form__input"
+                    <FormInput
+                        label="Password*"
                         type="password"
                         placeholder="************"
                         required
+                        onChange={handleChange}
+                        value={password}
+                        name="password"
                     />
                 </div>
                 <div className="mb-4">
-                    <label
-                        className="block mb-2 font-medium text-coolGray-800"
-                        htmlFor=""
-                        required
-                    >
-                        Confirm password*
-                    </label>
-                    <input
-                        className="form__input"
+                    <FormInput
+                        label="Confirm password*"
                         type="password"
                         placeholder="************"
+                        required
+                        onChange={handleChange}
+                        value={confirmPassword}
+                        name="confirmPassword"
                     />
                 </div>
                 <div className="flex flex-wrap items-center justify-between mb-6">
@@ -109,12 +141,12 @@ export default function SignUpForm() {
                         </Link>
                     </div>
                 </div>
-                <Link
+                <button
                     className="inline-block w-full py-3 mb-4 text-base font-medium leading-6 text-center bg-green-500 rounded-md shadow-sm px-7 text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                    to="/"
+                    type="submit"
                 >
                     Sign Up
-                </Link>
+                </button>
                 <button
                     className="inline-flex items-center justify-center w-full py-3 mb-6 text-base font-medium leading-6 text-center bg-white border rounded-md shadow-sm px-7 text-coolGray-500 border-coolGray-100 hover:border-coolGray-200"
                     type="button"
