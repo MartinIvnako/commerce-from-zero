@@ -1,5 +1,4 @@
 import SignUpForm from "../components/sign-up-form/sign-up-form.component";
-import { signInWithGooglePopup } from "../utils/firebase/firebase.utils";
 
 export default function SignUp() {
     return (

@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { UserContext } from "../../context/user.context";
 
 export default function Navigation() {
+    const { currentUser } = useContext(UserContext);
+    console.log(currentUser);
+
     const navigationLinks = [
         {
             id: 1,
