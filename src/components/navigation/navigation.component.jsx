@@ -1,10 +1,19 @@
 import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../context/user.context";
+import Button from './../button/button.component';
+import { signOutUser } from './../../utils/firebase/firebase.utils';
 
 export default function Navigation() {
-    const { currentUser } = useContext(UserContext);
-    console.log(currentUser);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
+
+    const signOutHandler = async () => { 
+        await signOutUser();
+        setCurrentUser(null);
+    }
+
+    console.log(currentUser)
+        
 
     const navigationLinks = [
         {
@@ -54,7 +63,9 @@ export default function Navigation() {
                         </div>
                         <div className="hidden xl:block xl:w-1/3">
                             <div className="flex items-center justify-end">
-                                <Link
+                                {!currentUser && (
+                                    <>
+                                     <Link
                                     className="inline-block px-4 py-2 mr-2 font-medium leading-5 bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
                                     to="/sign-in"
                                 >
@@ -66,6 +77,11 @@ export default function Navigation() {
                                 >
                                     Sign Up
                                 </Link>
+                                    </>
+                                )}
+                                {currentUser && (
+                                    <Button  onClick={signOutHandler}>Log out</Button>
+                                )}
                             </div>
                         </div>
                     </div>
