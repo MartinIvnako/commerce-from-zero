@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context/user.context";
 import {
     createUserDocumentFromAuth,
     signInAuthWithEmailAndPassword,
@@ -19,11 +18,8 @@ export default function SignInForm() {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
-    const { setCurrentUser } = useContext(UserContext);
-
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
-        setCurrentUser(user);
         await createUserDocumentFromAuth(user);
     };
 
@@ -39,7 +35,6 @@ export default function SignInForm() {
                 email,
                 password
             );
-            setCurrentUser(user);
             resetFormFields();
         } catch (error) {
             switch (error.code) {

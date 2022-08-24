@@ -1,19 +1,13 @@
 import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../context/user.context";
-import Button from './../button/button.component';
-import { signOutUser } from './../../utils/firebase/firebase.utils';
+import Button from "./../button/button.component";
+import { signOutUser } from "./../../utils/firebase/firebase.utils";
 
 export default function Navigation() {
-    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
 
-    const signOutHandler = async () => { 
-        await signOutUser();
-        setCurrentUser(null);
-    }
-
-    console.log(currentUser)
-        
+    console.log(currentUser);
 
     const navigationLinks = [
         {
@@ -65,22 +59,24 @@ export default function Navigation() {
                             <div className="flex items-center justify-end">
                                 {!currentUser && (
                                     <>
-                                     <Link
-                                    className="inline-block px-4 py-2 mr-2 font-medium leading-5 bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
-                                    to="/sign-in"
-                                >
-                                    Log In
-                                </Link>
-                                <Link
-                                    className="inline-block px-4 py-2 text-sm font-medium leading-5 bg-green-500 rounded-md text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    to="/sign-up"
-                                >
-                                    Sign Up
-                                </Link>
+                                        <Link
+                                            className="inline-block px-4 py-2 mr-2 font-medium leading-5 bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
+                                            to="/sign-in"
+                                        >
+                                            Log In
+                                        </Link>
+                                        <Link
+                                            className="inline-block px-4 py-2 text-sm font-medium leading-5 bg-green-500 rounded-md text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            to="/sign-up"
+                                        >
+                                            Sign Up
+                                        </Link>
                                     </>
                                 )}
                                 {currentUser && (
-                                    <Button  onClick={signOutHandler}>Log out</Button>
+                                    <Button onClick={signOutUser}>
+                                        Log out
+                                    </Button>
                                 )}
                             </div>
                         </div>
