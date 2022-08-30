@@ -7,8 +7,6 @@ import { signOutUser } from "./../../utils/firebase/firebase.utils";
 export default function Navigation() {
     const { currentUser } = useContext(UserContext);
 
-    console.log(currentUser);
-
     const navigationLinks = [
         {
             id: 1,

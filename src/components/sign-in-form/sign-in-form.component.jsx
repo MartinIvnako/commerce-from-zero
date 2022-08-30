@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    createUserDocumentFromAuth,
     signInAuthWithEmailAndPassword,
     signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
@@ -19,8 +17,7 @@ export default function SignInForm() {
     const { email, password } = formFields;
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     };
 
     const resetFormFields = () => {
@@ -31,10 +28,7 @@ export default function SignInForm() {
         event.preventDefault();
 
         try {
-            const { user } = await signInAuthWithEmailAndPassword(
-                email,
-                password
-            );
+            await signInAuthWithEmailAndPassword(email, password);
             resetFormFields();
         } catch (error) {
             switch (error.code) {
@@ -45,7 +39,7 @@ export default function SignInForm() {
                     alert("No user associated with this email.");
                     break;
                 default:
-                    console.log("", error);
+                    console.log(error);
             }
         }
     };
