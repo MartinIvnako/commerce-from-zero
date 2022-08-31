@@ -55,20 +55,20 @@ export default function Navigation() {
                             </ul>
                             <div className="px-4 text-coolGray-500">|</div>
                             {!currentUser && (
-                                <>
+                                <div className="grid grid-cols-2 gap-3">
                                     <Link
-                                        className="inline-block px-4 py-2 mr-2 font-medium leading-5 bg-transparent rounded-md text-coolGray-500 hover:text-coolGray-900"
+                                        className="px-6 py-2 text-sm font-bold text-gray-900 transition duration-200 bg-gray-50 hover:bg-gray-100 rounded-xl"
                                         to="/sign-in"
                                     >
                                         Log In
                                     </Link>
                                     <Link
-                                        className="inline-block px-4 py-2 text-sm font-medium leading-5 bg-green-500 rounded-md text-green-50 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                        className="px-6 py-2 text-sm font-bold transition duration-200 bg-gray-900 text-gray-50 hover:bg-gray-700 rounded-xl"
                                         to="/sign-up"
                                     >
                                         Sign Up
                                     </Link>
-                                </>
+                                </div>
                             )}
                             {currentUser && (
                                 <Button
