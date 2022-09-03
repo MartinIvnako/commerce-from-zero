@@ -3,7 +3,7 @@ import { ReactComponent as CartIconLogo } from "../../assets/shopping-bag.svg";
 import { useContext } from "react";
 
 import { CartContext } from "../../context/cart.context";
-import CartDropdown from "./cart-dropdown";
+import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 const CartIcon = () => {
     const { isCartOpen, setIsCartOpen } = useContext(CartContext);

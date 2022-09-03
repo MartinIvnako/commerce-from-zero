@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../context/user.context";
 import Button from "./../button/button.component";
@@ -27,7 +27,7 @@ export default function Navigation() {
     ];
 
     return (
-        <Fragment className="relative z-20 mb-6 bg-white drop-shadow-md">
+        <div className="relative z-20 mb-6 bg-white drop-shadow-md">
             <header className="flex justify-between p-6 px-4">
                 <div className="flex items-center justify-between w-full">
                     <div className="xl:w-1/3">
@@ -85,6 +85,6 @@ export default function Navigation() {
                 </div>
             </header>
             <Outlet />
-        </Fragment>
+        </div>
     );
 }
