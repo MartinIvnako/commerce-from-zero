@@ -16,8 +16,8 @@ export default function Navigation() {
         },
         {
             id: 2,
-            title: "Products",
-            link: "/",
+            title: "Checkout",
+            link: "/checkout",
         },
         {
             id: 3,
