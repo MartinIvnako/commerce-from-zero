@@ -6,15 +6,19 @@ import { CartContext } from "../../context/cart.context";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 const CartIcon = () => {
-    const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+    const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
 
     const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
 
     return (
-        <div className="flex items-center">
-            <Button onClick={toggleIsCartOpen}>
-                <CartIconLogo className="w-8 h-8 ml-4" />
-            </Button>
+        <div>
+            <button
+                onClick={toggleIsCartOpen}
+                className="relative flex items-end justify-center w-8 h-8 ml-4 "
+            >
+                <CartIconLogo className="absolute top-0 left-0 w-8 h-8" />
+                <span className="text-[14px]">{cartCount}</span>
+            </button>
             {isCartOpen && <CartDropdown />}
         </div>
     );
