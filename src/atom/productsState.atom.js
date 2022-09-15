@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import PRODUCTS from "../shop-data.json";
 
-export const listOfProducts = atom({
+export const listOfProductsState = atom({
     key: "listOfProducts",
     default: [...PRODUCTS],
 });

@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import CurrentUserEffect from "./atom-effects/current-user-effect.atom-effect";
 
 import Navigation from "./components/navigation/navigation.component";
 import Checkout from "./routes/checkout.component";
@@ -11,6 +12,7 @@ import SignUp from "./routes/sign-up.component";
 export default function App() {
     return (
         <RecoilRoot>
+            <CurrentUserEffect />
             <Routes>
                 <Route path="/" element={<Navigation />}>
                     <Route index element={<Home />} />

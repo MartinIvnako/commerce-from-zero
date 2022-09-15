@@ -1,13 +1,13 @@
-import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { UserContext } from "../../context/user.context";
 import Button from "./../button/button.component";
 import { signOutUser } from "./../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
+import { useRecoilState } from "recoil";
+import { currentUserState } from "../../atom/currentUserState.atom";
 
 export default function Navigation() {
-    const { currentUser } = useContext(UserContext);
-
+    const [currentUser] = useRecoilState(currentUserState);
+    console.log(currentUser);
     const navigationLinks = [
         {
             id: 1,
@@ -25,7 +25,6 @@ export default function Navigation() {
             link: "/",
         },
     ];
-
     return (
         <div className="relative z-20 mb-6 bg-white drop-shadow-md">
             <header className="flex justify-between p-6 px-4">

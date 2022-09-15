@@ -1,11 +1,9 @@
 import { useRecoilState } from "recoil";
-import { listOfProducts } from "../../atom/products.atom";
+import { listOfProductsState } from "../../atom/productsState.atom";
 import ProductCard from "../../components/category/product-card.component";
 
 const Shop = () => {
-    const [products] = useRecoilState(listOfProducts);
-
-    console.log(products);
+    const [products] = useRecoilState(listOfProductsState);
 
     return (
         <section className="py-4 bg-coolGray-50">
