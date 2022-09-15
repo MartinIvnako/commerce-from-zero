@@ -1,14 +1,12 @@
-import Button from "../button/button.component";
 import { ReactComponent as CartIconLogo } from "../../assets/shopping-bag.svg";
-import { useContext } from "react";
 
-import { CartContext } from "../../context/cart.context";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
-import { isCartOpenState } from "../../atom/is-cart-open-state.atom";
-import { useRecoilState } from "recoil";
+import { isCartOpenState } from "../../state/is-cart-open-state.atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartCountState } from "../../state/cart-count-state.selector";
 
 const CartIcon = () => {
-    const { cartCount } = useContext(CartContext);
+    const cartCount = useRecoilValue(cartCountState);
     const [isCartOpen, setIsCartOpen] = useRecoilState(isCartOpenState);
 
     const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);

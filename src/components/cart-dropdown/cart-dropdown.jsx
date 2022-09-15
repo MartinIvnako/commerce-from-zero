@@ -1,10 +1,11 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "../cart-item/cart-item.component";
-import { CartContext } from "../../context/cart.context";
+import { cartItemsState } from "../../state/cart-items-state.atom";
+import { useRecoilValue } from "recoil";
 
 const CartDropdown = () => {
-    const { cartItems } = useContext(CartContext);
+    const cartItems = useRecoilValue(cartItemsState);
+
     return (
         <div className="relative ">
             <div

@@ -2,11 +2,11 @@ import { Outlet, Link } from "react-router-dom";
 import Button from "./../button/button.component";
 import { signOutUser } from "./../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
-import { useRecoilState } from "recoil";
-import { currentUserState } from "../../atom/current-user-state.atom";
+import { useRecoilValue } from "recoil";
+import { currentUserState } from "../../state/current-user-state.atom";
 
 export default function Navigation() {
-    const [currentUser] = useRecoilState(currentUserState);
+    const currentUser = useRecoilValue(currentUserState);
     const navigationLinks = [
         {
             id: 1,

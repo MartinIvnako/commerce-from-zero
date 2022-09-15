@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { currentUserState } from "../atom/current-user-state.atom";
+import { useSetRecoilState } from "recoil";
+import { currentUserState } from "../state/current-user-state.atom";
 
 import {
     createUserDocumentFromAuth,
@@ -8,7 +8,7 @@ import {
 } from "../utils/firebase/firebase.utils";
 
 export default function CurrentUserEffect() {
-    const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+    const setCurrentUser = useSetRecoilState(currentUserState);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener((user) => {

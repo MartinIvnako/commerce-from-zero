@@ -1,9 +1,9 @@
-import { useRecoilState } from "recoil";
-import { listOfProductsState } from "../../atom/products-state.atom";
+import { useRecoilValue } from "recoil";
 import ProductCard from "../../components/category/product-card.component";
+import { listOfProductsState } from "../../state/products-state.atom";
 
 const Shop = () => {
-    const [products] = useRecoilState(listOfProductsState);
+    const products = useRecoilValue(listOfProductsState);
 
     return (
         <section className="py-4 bg-coolGray-50">

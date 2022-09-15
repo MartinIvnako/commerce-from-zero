@@ -1,9 +1,28 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/cart.context";
+import { useSetRecoilState } from "recoil";
+import { cartItemsState } from "../../state/cart-items-state.atom";
 
 export default function ProductCard({ product }) {
     const { name, imageUrl, price } = product;
-    const { addItemsToCart } = useContext(CartContext);
+    const addItemsToCart = useSetRecoilState(cartItemsState);
+
+    const selectItem = (product) => {
+        addItemsToCart((oldCartItems) => {
+            const existingCartItem = oldCartItems.find(
+                (cartItem) => cartItem.id === product.id
+            );
+
+            if (existingCartItem) {
+                return oldCartItems.map((cartItem) =>
+                    cartItem.id === product.id
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                        : { ...cartItem }
+                );
+            }
+
+            return [...oldCartItems, { ...product, quantity: 1 }];
+        });
+    };
+
     return (
         <div className="relative w-full p-2 sm:w-1/2 lg:w-1/3 xl:w-1/5">
             <div className="h-full bg-white border rounded-md border-coolGray-100 shadow-dashboard">
@@ -33,7 +52,7 @@ export default function ProductCard({ product }) {
                     <div className="w-full">
                         <button
                             className="flex flex-wrap justify-center w-full px-4 py-2.5  text-sm bg-green-500 hover:bg-green-600 font-medium text-white border border-green-500 rounded-br-md shadow-button"
-                            onClick={() => addItemsToCart(product)}
+                            onClick={() => selectItem(product)}
                         >
                             <p data-config-id="auto-txt-5-4">Buy</p>
                         </button>
