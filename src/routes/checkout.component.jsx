@@ -2,6 +2,7 @@ import { CloseCircle, ArrowSquareLeft, ArrowSquareRight } from "iconsax-react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { cartItemsState } from "../state/cart-items-state.atom";
 import { cartCountState } from "../state/cart-count-state.selector";
+import { createCart } from "../utils/cart/cart.utils";
 
 const Checkout = () => {
     const cartItems = useRecoilValue(cartItemsState);
@@ -10,19 +11,7 @@ const Checkout = () => {
 
     const selectItem = (product) => {
         addItemsToCart((oldCartItems) => {
-            const existingCartItem = oldCartItems.find(
-                (cartItem) => cartItem.id === product.id
-            );
-
-            if (existingCartItem) {
-                return oldCartItems.map((cartItem) =>
-                    cartItem.id === product.id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                        : { ...cartItem }
-                );
-            }
-
-            return [...oldCartItems, { ...product, quantity: 1 }];
+            return createCart(product, oldCartItems);
         });
     };
 

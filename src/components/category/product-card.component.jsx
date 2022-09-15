@@ -1,5 +1,6 @@
 import { useSetRecoilState } from "recoil";
 import { cartItemsState } from "../../state/cart-items-state.atom";
+import { createCart } from "../../utils/cart/cart.utils";
 
 export default function ProductCard({ product }) {
     const { name, imageUrl, price } = product;
@@ -7,19 +8,7 @@ export default function ProductCard({ product }) {
 
     const selectItem = (product) => {
         addItemsToCart((oldCartItems) => {
-            const existingCartItem = oldCartItems.find(
-                (cartItem) => cartItem.id === product.id
-            );
-
-            if (existingCartItem) {
-                return oldCartItems.map((cartItem) =>
-                    cartItem.id === product.id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                        : { ...cartItem }
-                );
-            }
-
-            return [...oldCartItems, { ...product, quantity: 1 }];
+            return createCart(product, oldCartItems);
         });
     };
 
