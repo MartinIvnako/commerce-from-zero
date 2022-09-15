@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { currentUserState } from "../atom/current-user-state.atom";
 
-import { currentUserState } from "../atom/currentUserState.atom";
 import {
     createUserDocumentFromAuth,
     onAuthStateChangedListener,

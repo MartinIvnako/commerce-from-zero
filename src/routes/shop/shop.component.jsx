@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { listOfProductsState } from "../../atom/productsState.atom";
+import { listOfProductsState } from "../../atom/products-state.atom";
 import ProductCard from "../../components/category/product-card.component";
 
 const Shop = () => {

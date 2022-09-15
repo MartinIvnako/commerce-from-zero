@@ -3,7 +3,7 @@ import Button from "./../button/button.component";
 import { signOutUser } from "./../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import { useRecoilState } from "recoil";
-import { currentUserState } from "../../atom/currentUserState.atom";
+import { currentUserState } from "../../atom/current-user-state.atom";
 
 export default function Navigation() {
     const [currentUser] = useRecoilState(currentUserState);
