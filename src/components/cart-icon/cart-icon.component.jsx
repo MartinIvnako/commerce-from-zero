@@ -4,9 +4,12 @@ import { useContext } from "react";
 
 import { CartContext } from "../../context/cart.context";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
+import { isCartOpenState } from "../../atom/is-cart-open-state.atom";
+import { useRecoilState } from "recoil";
 
 const CartIcon = () => {
-    const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
+    const { cartCount } = useContext(CartContext);
+    const [isCartOpen, setIsCartOpen] = useRecoilState(isCartOpenState);
 
     const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
 

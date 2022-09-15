@@ -7,7 +7,6 @@ import { currentUserState } from "../../atom/currentUserState.atom";
 
 export default function Navigation() {
     const [currentUser] = useRecoilState(currentUserState);
-    console.log(currentUser);
     const navigationLinks = [
         {
             id: 1,
