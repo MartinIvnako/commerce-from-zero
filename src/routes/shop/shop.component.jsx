@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useRecoilState } from "recoil";
+import { listOfProducts } from "../../atom/products.atom";
 import ProductCard from "../../components/category/product-card.component";
-import { ProductsContext } from "../../context/products.context";
 
 const Shop = () => {
-    const { products } = useContext(ProductsContext);
+    const [products] = useRecoilState(listOfProducts);
+
+    console.log(products);
 
     return (
         <section className="py-4 bg-coolGray-50">
